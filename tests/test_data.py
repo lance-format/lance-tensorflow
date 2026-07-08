@@ -129,7 +129,7 @@ def test_namespace_table_id(monkeypatch):
 
 
 def test_scan_use_tf_data(tf_dataset):
-    ds = tf.data.Dataset.from_lance(tf_dataset)
+    ds = tf.data.Dataset.from_lance(tf_dataset, batch_size=100)
     for idx, batch in enumerate(ds):
         assert batch["a"].numpy()[0] == idx * 100
         assert batch["s"].numpy()[0] == f"val-{idx * 100}".encode("utf-8")
