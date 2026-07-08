@@ -119,19 +119,17 @@ def test_namespace_table_id(monkeypatch):
         None,
         namespace_client=ns,
         table_id=["tbl"],
-        ignore_namespace_table_storage_options=True,
     )
 
     assert calls["kwargs"]["namespace_client"] is ns
     assert calls["kwargs"]["table_id"] == ["tbl"]
-    assert calls["kwargs"]["ignore_namespace_table_storage_options"] is True
 
     batches = list(ds)
     assert [b["a"].numpy().tolist() for b in batches] == [[1, 2]]
 
 
 def test_scan_use_tf_data(tf_dataset):
-    ds = tf.data.Dataset.from_lance(tf_dataset)
+    ds = tf.data.Dataset.from_lance(tf_dataset, batch_size=100)
     for idx, batch in enumerate(ds):
         assert batch["a"].numpy()[0] == idx * 100
         assert batch["s"].numpy()[0] == f"val-{idx * 100}".encode("utf-8")

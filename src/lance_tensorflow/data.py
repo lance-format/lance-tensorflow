@@ -156,7 +156,6 @@ def from_lance(
     output_signature: Optional[Dict[str, tf.TypeSpec]] = None,
     namespace_client: Optional["LanceNamespace"] = None,
     table_id: Optional[List[str]] = None,
-    ignore_namespace_table_storage_options: bool = False,
 ) -> tf.data.Dataset:
     """Create a ``tf.data.Dataset`` from a Lance dataset.
 
@@ -184,9 +183,6 @@ def from_lance(
     table_id : Optional[List[str]], optional
         Table identifier used together with ``namespace_client`` to locate
         the table.
-    ignore_namespace_table_storage_options : bool, default False
-        When using ``namespace_client``/``table_id``, ignore storage options
-        returned by the namespace.
 
     Examples
     --------
@@ -237,7 +233,6 @@ def from_lance(
             dataset,
             namespace_client=namespace_client,
             table_id=table_id,
-            ignore_namespace_table_storage_options=ignore_namespace_table_storage_options,
         )
 
     if isinstance(fragments, tf.data.Dataset):
