@@ -119,12 +119,10 @@ def test_namespace_table_id(monkeypatch):
         None,
         namespace_client=ns,
         table_id=["tbl"],
-        ignore_namespace_table_storage_options=True,
     )
 
     assert calls["kwargs"]["namespace_client"] is ns
     assert calls["kwargs"]["table_id"] == ["tbl"]
-    assert calls["kwargs"]["ignore_namespace_table_storage_options"] is True
 
     batches = list(ds)
     assert [b["a"].numpy().tolist() for b in batches] == [[1, 2]]
