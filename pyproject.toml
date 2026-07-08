@@ -1,0 +1,57 @@
+[project]
+name = "lance-tensorflow"
+version = "0.1.0"
+description = "TensorFlow integration for Lance datasets"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Lance Devs", email = "dev@lance.org" }]
+keywords = ["lance", "tensorflow", "tf.data", "machine-learning"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.22",
+    "pyarrow>=14",
+    "pylance",
+    "tensorflow>=2.20; sys_platform == 'linux'",
+]
+
+[project.urls]
+Homepage = "https://github.com/lance-format/lance-tensorflow"
+Repository = "https://github.com/lance-format/lance-tensorflow"
+Issues = "https://github.com/lance-format/lance-tensorflow/issues"
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pandas==2.3.3",
+    "pillow==11.3.0",
+    "pytest==8.4.2",
+    "ruff==0.11.2",
+]
+
+[tool.ruff]
+lint.select = ["F", "E", "W", "I", "G", "TCH", "PERF", "B019"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "error::FutureWarning",
+    "error::DeprecationWarning",
+    "ignore:.*`np\\.object` will be defined as the corresponding NumPy scalar\\..*:FutureWarning",
+    "ignore:.*np\\.object.*:FutureWarning",
+]
